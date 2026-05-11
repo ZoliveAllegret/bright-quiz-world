@@ -131,7 +131,7 @@ function SiteHeader() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[var(--gradient-soft)]" />
+      <div className="absolute inset-0 -z-10 bg-[image:var(--gradient-soft)]" />
       <div className="absolute -top-40 -right-40 -z-10 w-[560px] h-[560px] rounded-full bg-primary/15 blur-3xl" />
       <div className="absolute top-40 -left-40 -z-10 w-[460px] h-[460px] rounded-full bg-primary-glow/15 blur-3xl" />
 
@@ -144,7 +144,7 @@ function Hero() {
             className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]"
           >
             Des quiz qui captivent.{" "}
-            <span className="bg-[var(--gradient-hero)] bg-clip-text text-transparent">
+            <span className="bg-[image:var(--gradient-hero)] bg-clip-text text-transparent">
               Des résultats qui parlent.
             </span>
           </motion.h1>
@@ -225,7 +225,7 @@ function QuizMock() {
           initial={{ width: 0 }}
           animate={{ width: "30%" }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="h-full bg-[var(--gradient-hero)]"
+          className="h-full bg-[image:var(--gradient-hero)]"
         />
       </div>
 
@@ -517,7 +517,7 @@ function Testimonials() {
                 </div>
                 <p className="text-lg italic text-foreground max-w-xl">"{t.quote}"</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-[var(--gradient-hero)] text-primary-foreground flex items-center justify-center text-sm font-semibold">
+                  <div className="h-10 w-10 rounded-full bg-[image:var(--gradient-hero)] text-primary-foreground flex items-center justify-center text-sm font-semibold">
                     {t.initials}
                   </div>
                   <div className="text-left">
@@ -551,7 +551,7 @@ function FinalCTA() {
     <section className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <div className="rounded-3xl bg-[var(--gradient-cta)] p-12 md:p-16 text-center shadow-[var(--shadow-elegant)]">
+          <div className="rounded-3xl bg-[image:var(--gradient-cta)] p-12 md:p-16 text-center shadow-[var(--shadow-elegant)]">
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
               Prêt pour votre prochaine séance ?
             </h2>
