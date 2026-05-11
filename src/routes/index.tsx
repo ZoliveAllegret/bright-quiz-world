@@ -582,9 +582,33 @@ function SiteFooter() {
             Quiz interactifs en direct pour formateurs et enseignants.
           </p>
         </div>
-        <FooterCol title="Produit" links={["Fonctionnalités", "Tarifs", "Banque de quiz", "Nouveautés"]} />
-        <FooterCol title="Légal" links={["CGU", "Politique de confidentialité", "RGPD", "Mentions légales"]} />
-        <FooterCol title="Contact" links={["Support", "contact@evalus.app", "Twitter", "LinkedIn"]} />
+        <FooterCol
+          title="Produit"
+          links={[
+            { label: "Fonctionnalités", href: "#features" },
+            { label: "Tarifs", href: "#pricing" },
+            { label: "Banque de quiz", href: "#" },
+            { label: "Nouveautés", href: "#" },
+          ]}
+        />
+        <FooterCol
+          title="Légal"
+          links={[
+            { label: "CGU", href: "/legal/cgu" },
+            { label: "Politique de confidentialité", href: "/legal/confidentialite" },
+            { label: "RGPD", href: "/legal/rgpd" },
+            { label: "Mentions légales", href: "/legal/mentions-legales" },
+          ]}
+        />
+        <FooterCol
+          title="Contact"
+          links={[
+            { label: "Support", href: "mailto:support@evalus.app" },
+            { label: "contact@evalus.app", href: "mailto:contact@evalus.app" },
+            { label: "Twitter", href: "https://twitter.com" },
+            { label: "LinkedIn", href: "https://linkedin.com" },
+          ]}
+        />
       </div>
       <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-border text-xs text-muted-foreground flex flex-col md:flex-row justify-between gap-2">
         <span>© 2026 Evalus. Tous droits réservés.</span>
@@ -594,14 +618,14 @@ function SiteFooter() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: string[] }) {
+function FooterCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
       <div className="text-sm font-semibold mb-3">{title}</div>
       <ul className="space-y-2 text-sm text-muted-foreground">
         {links.map((l) => (
-          <li key={l}>
-            <a href="#" className="hover:text-foreground transition-colors">{l}</a>
+          <li key={l.label}>
+            <a href={l.href} className="hover:text-foreground transition-colors">{l.label}</a>
           </li>
         ))}
       </ul>
