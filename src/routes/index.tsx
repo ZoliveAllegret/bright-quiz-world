@@ -551,7 +551,7 @@ function FinalCTA() {
     <section className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <div className="rounded-3xl bg-[var(--gradient-cta)] p-12 md:p-16 text-center shadow-[var(--shadow-elegant)]">
+          <div className="rounded-3xl bg-[image:var(--gradient-cta)] p-12 md:p-16 text-center shadow-[var(--shadow-elegant)]">
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
               Prêt pour votre prochaine séance ?
             </h2>
