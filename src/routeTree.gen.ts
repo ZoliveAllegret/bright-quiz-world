@@ -9,38 +9,110 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LegalRgpdRouteImport } from './routes/legal.rgpd'
+import { Route as LegalMentionsLegalesRouteImport } from './routes/legal.mentions-legales'
+import { Route as LegalConfidentialiteRouteImport } from './routes/legal.confidentialite'
+import { Route as LegalCguRouteImport } from './routes/legal.cgu'
 
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalRgpdRoute = LegalRgpdRouteImport.update({
+  id: '/rgpd',
+  path: '/rgpd',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalMentionsLegalesRoute = LegalMentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalConfidentialiteRoute = LegalConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalCguRoute = LegalCguRouteImport.update({
+  id: '/cgu',
+  path: '/cgu',
+  getParentRoute: () => LegalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/legal': typeof LegalRouteWithChildren
+  '/legal/cgu': typeof LegalCguRoute
+  '/legal/confidentialite': typeof LegalConfidentialiteRoute
+  '/legal/mentions-legales': typeof LegalMentionsLegalesRoute
+  '/legal/rgpd': typeof LegalRgpdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/legal': typeof LegalRouteWithChildren
+  '/legal/cgu': typeof LegalCguRoute
+  '/legal/confidentialite': typeof LegalConfidentialiteRoute
+  '/legal/mentions-legales': typeof LegalMentionsLegalesRoute
+  '/legal/rgpd': typeof LegalRgpdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/legal': typeof LegalRouteWithChildren
+  '/legal/cgu': typeof LegalCguRoute
+  '/legal/confidentialite': typeof LegalConfidentialiteRoute
+  '/legal/mentions-legales': typeof LegalMentionsLegalesRoute
+  '/legal/rgpd': typeof LegalRgpdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/legal'
+    | '/legal/cgu'
+    | '/legal/confidentialite'
+    | '/legal/mentions-legales'
+    | '/legal/rgpd'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/legal'
+    | '/legal/cgu'
+    | '/legal/confidentialite'
+    | '/legal/mentions-legales'
+    | '/legal/rgpd'
+  id:
+    | '__root__'
+    | '/'
+    | '/legal'
+    | '/legal/cgu'
+    | '/legal/confidentialite'
+    | '/legal/mentions-legales'
+    | '/legal/rgpd'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LegalRoute: typeof LegalRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +120,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/rgpd': {
+      id: '/legal/rgpd'
+      path: '/rgpd'
+      fullPath: '/legal/rgpd'
+      preLoaderRoute: typeof LegalRgpdRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/mentions-legales': {
+      id: '/legal/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/legal/mentions-legales'
+      preLoaderRoute: typeof LegalMentionsLegalesRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/confidentialite': {
+      id: '/legal/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/legal/confidentialite'
+      preLoaderRoute: typeof LegalConfidentialiteRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/cgu': {
+      id: '/legal/cgu'
+      path: '/cgu'
+      fullPath: '/legal/cgu'
+      preLoaderRoute: typeof LegalCguRouteImport
+      parentRoute: typeof LegalRoute
+    }
   }
 }
 
+interface LegalRouteChildren {
+  LegalCguRoute: typeof LegalCguRoute
+  LegalConfidentialiteRoute: typeof LegalConfidentialiteRoute
+  LegalMentionsLegalesRoute: typeof LegalMentionsLegalesRoute
+  LegalRgpdRoute: typeof LegalRgpdRoute
+}
+
+const LegalRouteChildren: LegalRouteChildren = {
+  LegalCguRoute: LegalCguRoute,
+  LegalConfidentialiteRoute: LegalConfidentialiteRoute,
+  LegalMentionsLegalesRoute: LegalMentionsLegalesRoute,
+  LegalRgpdRoute: LegalRgpdRoute,
+}
+
+const LegalRouteWithChildren = LegalRoute._addFileChildren(LegalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LegalRoute: LegalRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
