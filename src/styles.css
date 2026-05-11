@@ -82,6 +82,9 @@
   --gradient-soft: linear-gradient(180deg, oklch(0.98 0.02 320), oklch(1 0 0));
   --shadow-elegant: 0 20px 60px -20px oklch(0.50 0.14 315 / 0.35);
   --shadow-card: 0 8px 30px -12px oklch(0.30 0.05 270 / 0.15);
+  --anthracite: oklch(0.28 0.01 270);
+  --anthracite-foreground: oklch(0.98 0.005 300);
+  --gradient-cta: linear-gradient(135deg, oklch(0.50 0.14 315), oklch(0.28 0.01 270));
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
